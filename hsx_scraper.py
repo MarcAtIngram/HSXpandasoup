@@ -92,22 +92,23 @@ def format_release_dates(df):
     df.set_index('Symbol', inplace=True)
     df.drop(['Name', 'Price', 'Change', 'Button'], axis=1, inplace=True)
     df['Release Date'] = pandas.to_datetime(df['Release Date'])
+    # TODO make hannah proud - learn to replace this apply with a map function
     df['Release Date'] = df['Release Date'].apply(lambda x: excel_date(x))
 
     return df
 
 
-def excel_date(date1):
+def excel_date(date):
     """
     Returns Excel serialized date as float
         Parameters:
-            date1 (datetime): a Python datetime object
+            date (datetime): a Python datetime object
 
         Returns:
             serial (float): serialization of datetime for Excel date format
     """
     temp = datetime(1899, 12, 30)    # Note, not 31st Dec but 30th!
-    delta = date1 - temp
+    delta = date - temp
     serial = float(delta.days) + (float(delta.seconds) / 86400)
     return serial
 
