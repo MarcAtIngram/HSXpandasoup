@@ -1,0 +1,7 @@
+beautifulsoup4~=4.11
+datetime~=4.4
+lxml
+openpyxl
+pandas~=1.5
+requests~=2.28
+urllib3~=1.26
